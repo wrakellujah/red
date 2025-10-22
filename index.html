@@ -79,16 +79,36 @@
       margin-top: 30px;
     }
 
-    iframe {
+    #musicBtn {
+      background-color: #d4a373;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+
+    #musicBtn:hover {
+      background-color: #b86b77;
+    }
+
+    audio {
       display: none;
     }
   </style>
 </head>
 <body>
-  <h1>💌</h1>
+  <h1 class="heart">💌</h1>
   <div id="message">Click the heart 💌</div>
 
-  <iframe id="music" width="0" height="0" src="https://www.youtube.com/embed/IwElYQMUt7M?si=oMndbpyOhw2IIxxu&autoplay=1&loop=1&playlist=IwElYQMUt7M"></iframe>
+  <!-- Manual play music -->
+  <button id="musicBtn">🎵 Play Romantic Music</button>
+  <audio id="bgMusic" loop>
+    <source src="https://docs.google.com/uc?export=download&id=1MLfA7L0r9DkG7lA1Y5bSg5gFx3eAOmqD" type="audio/mp3">
+  </audio>
 
   <script>
     const msgs = [
@@ -103,6 +123,14 @@
 
     let index = 0;
     const msgDiv = document.getElementById("message");
+    const musicBtn = document.getElementById("musicBtn");
+    const bgMusic = document.getElementById("bgMusic");
+
+    // Music play button
+    musicBtn.addEventListener("click", () => {
+      bgMusic.play();
+      musicBtn.style.display = "none";
+    });
 
     msgDiv.addEventListener("click", () => {
       if (index < msgs.length) {
